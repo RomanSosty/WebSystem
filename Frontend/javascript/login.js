@@ -13,14 +13,15 @@ document.getElementById("loginForm").addEventListener("submit", function() {
         },
         body: JSON.stringify(data)
     })
-        .then(response => {
+        .then(async response => {
             if (!response.ok) {
                 throw Error(response.statusText);
             }
-            console.log(response.text());
-    })
+            localStorage.setItem("JWT", await response.text());
+        })
         .then(data => {
             console.log("Success:",data);
+            window.location.href = "../main.html";
         })
         .catch((error) => {
             console.log(data);
