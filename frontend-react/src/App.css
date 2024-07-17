@@ -1,0 +1,6 @@
+/*Style hero section*/
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
