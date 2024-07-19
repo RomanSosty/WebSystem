@@ -1,12 +1,22 @@
 import './Header.css'
 import Button from "./ui/Button.tsx";
 import React from "react";
+import {useNavigate} from "react-router-dom";
 
 interface HeaderProps{
     buttonPath: string;
 }
 
 const Header: React.FC<HeaderProps> = ({buttonPath}) => {
+
+    const navigate = useNavigate();
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        const path = e.currentTarget.getAttribute('href')
+       if(path) {
+           navigate(path)
+       }
+    }
     return (
         <div className="header">
             <nav>
@@ -16,9 +26,9 @@ const Header: React.FC<HeaderProps> = ({buttonPath}) => {
                         <a href="" className="dropbtn">Oddělení</a>
                         <ul className="dropdown-content">
                             <li><a href="index.html">Přírodověda</a></li>
-                            <li><a href="index.html">TK TBC</a></li>
+                            <li><a href="/tkjoy" onClick={handleClick}>TK JOY</a></li>
                             <li><a href="index.html">Tělovýchova</a></li>
-                            <li><a href="index.html">TK JOY</a></li>
+                            <li><a href="index.html">TK TBC</a></li>
                             <li><a href="index.html">Estetika</a></li>
                         </ul>
                     </li>
