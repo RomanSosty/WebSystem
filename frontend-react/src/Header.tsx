@@ -1,14 +1,16 @@
 import './Header.css'
 import Button from "./ui/Button.tsx";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {jwtDecode} from "jwt-decode";
 
 interface HeaderProps{
     buttonPath: string;
 }
 
 const Header: React.FC<HeaderProps> = ({buttonPath}) => {
-
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [userData, setUserData] = useState<never>();
     const navigate = useNavigate();
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
@@ -17,6 +19,22 @@ const Header: React.FC<HeaderProps> = ({buttonPath}) => {
            navigate(path)
        }
     }
+
+    const handleLogout = () => {
+        localStorage.removeItem("JWT");
+        setIsLoggedIn(false);
+    }
+
+    useEffect(()=> {
+        const isLogged = localStorage.getItem("JWT");
+        if(isLogged){
+            setIsLoggedIn(true)
+            const decoded: never = jwtDecode(isLogged)
+            setUserData(decoded)
+            //TODO: send info about user
+            console.log(JSON.stringify(userData))
+        }
+    },[setIsLoggedIn])
     return (
         <div className="header">
             <nav>
@@ -36,8 +54,7 @@ const Header: React.FC<HeaderProps> = ({buttonPath}) => {
                     <li><a href="index.html">Tábory 2024</a></li>
                     <li><a href="index.html">Aktuality a akce</a></li>
                     <li><a href="index.html">Odloučená pracoviště</a></li>
-                    <li>
-                        <Button title="Přihlásit se" path={buttonPath}/>
+                    <li>{!isLoggedIn ? <Button title="Přihlásit se" path={buttonPath}/> : <Button title={"Odhlásit se"} path={"/"} onClick={handleLogout}/>}
                     </li>
                 </ul>
             </nav>

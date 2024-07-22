@@ -3,42 +3,24 @@ import React from "react";
 import {useNavigate} from "react-router-dom";
 
 
-interface ButtonProps{
+interface ButtonProps {
     title: string;
     path: string;
-    loginData?: {username: string, password: string};
+    onClick?: () => void;
 }
-const Button: React.FC<ButtonProps> = ({title, path, loginData}) => {
+
+const Button: React.FC<ButtonProps> = ({title, path, onClick}) => {
     const navigate = useNavigate();
-
-    const handleClick = async () => {
-        if (loginData) {
-            try {
-                const response = await fetch('http://localhost:8080/authAndGenerateToken', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(loginData),
-                    credentials: "include",
-                });
-
-                if (response.ok) {
-                    localStorage.setItem("JWT", await response.text());
-                    navigate(path);
-                } else {
-                    console.error(response);
-                }
-            } catch (error) {
-                console.error('Error during login:', error);
-            }
+    const handleClick = () => {
+        if (onClick) {
+            onClick();
+            navigate(path)
         } else {
-            console.log("Není login")
-            navigate(path);
+            navigate(path)
         }
     }
 
-    return(
+    return (
         <button onClick={handleClick}>
             {title}
         </button>

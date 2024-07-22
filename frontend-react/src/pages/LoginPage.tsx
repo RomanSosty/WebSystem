@@ -1,6 +1,6 @@
 import './loginPage.css'
-import Button from "../ui/Button.tsx";
 import {useState} from "react";
+import LoginButton from "../ui/LoginButton.tsx";
 
 const LoginPage = () => {
     const[username, setLogin] = useState('');
@@ -15,7 +15,7 @@ const LoginPage = () => {
                     <input type="password" value={password} placeholder="Heslo"
                            onChange={(e) => setPassword(e.target.value)}/>
                 </form>
-                <Button title="Přihlásit se" path={"/tkjoy"} loginData={{username, password}}/>
+                <LoginButton loginData={{username, password}}/>
             </div>
         </div>
     );
