@@ -14,17 +14,17 @@ const Sucess: React.FC = () => <SucessPage/>
 const App: React.FC = () => {
 
 
-  return (
-      <Router>
-          <Header buttonPath="/login"/>
-          <Routes>
-              <Route path="/" element={<Home />}/>
-              <Route path="/login" element={<Login/>}/>
-              <Route path="/tkjoy" element={<TkJoy/>}/>
-              <Route path="/sucess" element={<Sucess/>}/>
-          </Routes>
-      </Router>
-  )
+    return (
+        <Router>
+            <Header buttonPath="/login"/>
+            <Routes>
+                <Route path="/" element={<Home/>}/>
+                <Route path="/login" element={<Login/>}/>
+                <Route path="/tkjoy" element={<TkJoy/>}/>
+                <Route path="/sucess" element={<Sucess/>}/>
+            </Routes>
+        </Router>
+    )
 }
 
 export default App

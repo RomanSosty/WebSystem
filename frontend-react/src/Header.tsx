@@ -1,65 +1,95 @@
-import './Header.css'
-import Button from "./ui/Button.tsx";
+import {jwtDecode} from "jwt-decode";
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {jwtDecode} from "jwt-decode";
+import "./Header.css";
+import Button from "./ui/Button.tsx";
 
-interface HeaderProps{
+interface HeaderProps {
     buttonPath: string;
 }
 
 const Header: React.FC<HeaderProps> = ({buttonPath}) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userData, setUserData] = useState<never>();
+
     const navigate = useNavigate();
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
-        const path = e.currentTarget.getAttribute('href')
-       if(path) {
-           navigate(path)
-       }
-    }
+        const path = e.currentTarget.getAttribute("href");
+        if (path) {
+            navigate(path);
+        }
+    };
 
     const handleLogout = () => {
         localStorage.removeItem("JWT");
         setIsLoggedIn(false);
-    }
+    };
 
-    useEffect(()=> {
+    useEffect(() => {
         const isLogged = localStorage.getItem("JWT");
-        if(isLogged){
-            setIsLoggedIn(true)
-            const decoded: never = jwtDecode(isLogged)
-            setUserData(decoded)
+        if (isLogged) {
+            setIsLoggedIn(true);
+            const decoded: never = jwtDecode(isLogged);
+            setUserData(decoded);
             //TODO: send info about user
-            console.log(JSON.stringify(userData))
+            console.log(JSON.stringify(userData));
         }
-    },[setIsLoggedIn])
+    }, [setIsLoggedIn]);
     return (
         <div className="header">
             <nav>
                 <ul className="menu">
-                    <li><a href="index.html">O nás</a></li>
+                    <li>
+                        <a href="index.html">O nás</a>
+                    </li>
                     <li className="dropdown">
-                        <a href="" className="dropbtn">Oddělení</a>
+                        <a href="" className="dropbtn">
+                            Oddělení
+                        </a>
                         <ul className="dropdown-content">
-                            <li><a href="index.html">Přírodověda</a></li>
-                            <li><a href="/tkjoy" onClick={handleClick}>TK JOY</a></li>
-                            <li><a href="index.html">Tělovýchova</a></li>
-                            <li><a href="index.html">TK TBC</a></li>
-                            <li><a href="index.html">Estetika</a></li>
+                            <li>
+                                <a href="index.html">Přírodověda</a>
+                            </li>
+                            <li>
+                                <a href="/tkjoy" onClick={handleClick}>
+                                    TK JOY
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html">Tělovýchova</a>
+                            </li>
+                            <li>
+                                <a href="index.html">TK TBC</a>
+                            </li>
+                            <li>
+                                <a href="index.html">Estetika</a>
+                            </li>
                         </ul>
                     </li>
-                    <li><a href="index.html">Koužky a kurzy</a></li>
-                    <li><a href="index.html">Tábory 2024</a></li>
-                    <li><a href="index.html">Aktuality a akce</a></li>
-                    <li><a href="index.html">Odloučená pracoviště</a></li>
-                    <li>{!isLoggedIn ? <Button title="Přihlásit se" path={buttonPath}/> : <Button title={"Odhlásit se"} path={"/"} onClick={handleLogout}/>}
+                    <li>
+                        <a href="index.html">Koužky a kurzy</a>
+                    </li>
+                    <li>
+                        <a href="index.html">Tábory 2024</a>
+                    </li>
+                    <li>
+                        <a href="index.html">Aktuality a akce</a>
+                    </li>
+                    <li>
+                        <a href="index.html">Odloučená pracoviště</a>
+                    </li>
+                    <li>
+                        {!isLoggedIn ? (
+                            <Button title="Přihlásit se" path={buttonPath}/>
+                        ) : (
+                            <Button title={"Přihlášen: "} path={"/"} onClick={handleLogout}/>
+                        )}
                     </li>
                 </ul>
             </nav>
         </div>
     );
-}
+};
 
-export default Header
+export default Header;
