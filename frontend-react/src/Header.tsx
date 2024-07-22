@@ -8,9 +8,15 @@ interface HeaderProps {
     buttonPath: string;
 }
 
+interface userJwt{
+    sub: string,
+    iat: number,
+    exp: number
+}
+
 const Header: React.FC<HeaderProps> = ({buttonPath}) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [userData, setUserData] = useState<never>();
+    const [userData, setUserData] = useState<userJwt>();
 
     const navigate = useNavigate();
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -30,10 +36,8 @@ const Header: React.FC<HeaderProps> = ({buttonPath}) => {
         const isLogged = localStorage.getItem("JWT");
         if (isLogged) {
             setIsLoggedIn(true);
-            const decoded: never = jwtDecode(isLogged);
+            const decoded: userJwt = jwtDecode<userJwt>(isLogged);
             setUserData(decoded);
-            //TODO: send info about user
-            console.log(JSON.stringify(userData));
         }
     }, [setIsLoggedIn]);
     return (
@@ -83,7 +87,7 @@ const Header: React.FC<HeaderProps> = ({buttonPath}) => {
                         {!isLoggedIn ? (
                             <Button title="Přihlásit se" path={buttonPath}/>
                         ) : (
-                            <Button title={"Přihlášen: "} path={"/"} onClick={handleLogout}/>
+                            <Button title={"Přihlášen: " + userData?.sub} path={"/"} onClick={handleLogout}/>
                         )}
                     </li>
                 </ul>

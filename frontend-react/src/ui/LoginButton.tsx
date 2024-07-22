@@ -29,7 +29,7 @@ const LoginButton: React.FC<LoginButtonProps> = ({loginData}) => {
         }
     }
     return (
-        <Button title="Přihlásit se" path={"/sucess"} onClick={handleFetch}/>
+        <Button title="Přihlásit se" path={"/"} onClick={handleFetch}/>
     );
 };
 export default LoginButton;
