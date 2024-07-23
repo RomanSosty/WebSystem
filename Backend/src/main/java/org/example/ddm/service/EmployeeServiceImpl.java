@@ -26,6 +26,10 @@ public class EmployeeServiceImpl implements UserDetailsService {
         return employee.map(EmployeeInfoDetail::new).orElseThrow(() -> new UsernameNotFoundException("User not found" + username));
     }
 
+    public Optional<Employee> loadEmployeeByUsername(String username) throws UsernameNotFoundException {
+        return employeeRepository.findByUsername(username);
+    }
+
 
     public String addEmployee(Employee employee) {
         employee.setPassword(passwordEncoder.encode(employee.getPassword()));
