@@ -4,8 +4,9 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import React from "react";
 import LoginPage from "./pages/LoginPage.tsx";
 import TkJoyPage from "./pages/TkJoyPage.tsx";
+import HomePage from "./pages/HomePage.tsx";
 
-const Home: React.FC = () => <div>Home Page</div>
+const Home: React.FC = () => <HomePage/>
 const Login: React.FC = () => <LoginPage/>
 const TkJoy: React.FC = () => <TkJoyPage/>
 
