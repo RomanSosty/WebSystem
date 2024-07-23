@@ -1,0 +1,11 @@
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-image {
+    max-width: 110%;
+    opacity: 80%;
+}

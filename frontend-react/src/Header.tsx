@@ -50,7 +50,7 @@ const Header: React.FC<HeaderProps> = ({buttonPath}) => {
             <nav>
                 <ul className="menu">
                     <li>
-                        <a href="index.html">O nás</a>
+                        <a href="/" onClick={handleClick}>O nás</a>
                     </li>
                     <li className="dropdown">
                         <a href="" className="dropbtn">
