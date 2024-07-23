@@ -8,8 +8,11 @@ interface HeaderProps {
     buttonPath: string;
 }
 
-interface userJwt{
+interface userJwt {
     sub: string,
+    name: string,
+    surname: string,
+    roles: string,
     iat: number,
     exp: number
 }
@@ -23,7 +26,9 @@ const Header: React.FC<HeaderProps> = ({buttonPath}) => {
         e.preventDefault();
         const path = e.currentTarget.getAttribute("href");
         if (path) {
-            navigate(path);
+            navigate(path, {
+                state: {roles: userData?.roles}
+            });
         }
     };
 
@@ -87,7 +92,7 @@ const Header: React.FC<HeaderProps> = ({buttonPath}) => {
                         {!isLoggedIn ? (
                             <Button title="Přihlásit se" path={buttonPath}/>
                         ) : (
-                            <Button title={"Přihlášen: " + userData?.sub} path={"/"} onClick={handleLogout}/>
+                            <Button title={userData?.name + " " + userData?.surname} path={"/"} onClick={handleLogout}/>
                         )}
                     </li>
                 </ul>
