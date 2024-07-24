@@ -1,12 +1,32 @@
+.page-main-text-section{
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.posts-header{
+    display: flex;
+    justify-content: space-between;
+}
+.posts-section{
+    padding: 40px;
+    background-color: rgba(150, 150, 150, 0.17);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
 .posts-container{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 30px
+    margin: 30px;
 }
 
 .post-box {
-    background-color: #969696;
+    background-color: #FFFFFF;
     padding: 30px;
+    margin: 10px;
     border-radius: 20px;
+    width: 50em;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
