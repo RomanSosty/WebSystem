@@ -23,7 +23,6 @@ const Header: React.FC<HeaderProps> = ({buttonPath}) => {
 
     const navigate = useNavigate();
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
         const path = e.currentTarget.getAttribute("href");
         if (path) {
             navigate(path, {

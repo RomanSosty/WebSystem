@@ -1,0 +1,12 @@
+.posts-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px
+}
+
+.post-box {
+    background-color: #969696;
+    padding: 30px;
+    border-radius: 20px;
+}
