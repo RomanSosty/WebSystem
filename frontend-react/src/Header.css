@@ -6,10 +6,15 @@
     z-index: 100;
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 110%;
+    justify-content: space-between;
+    width: 100%;
     text-transform: uppercase;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.logo-ddm{
+    width: 5em;
+    margin-left: 1em;
 }
 
 nav {

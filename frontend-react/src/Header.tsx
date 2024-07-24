@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import "./Header.css";
 import Button from "./ui/Button.tsx";
+import logoDDM from "./assets/logo_BARVA.png"
 
 interface HeaderProps {
     buttonPath: string;
@@ -34,6 +35,7 @@ const Header: React.FC<HeaderProps> = ({buttonPath}) => {
     const handleLogout = () => {
         localStorage.removeItem("JWT");
         setIsLoggedIn(false);
+        window.location.reload();
     };
 
     useEffect(() => {
@@ -46,8 +48,10 @@ const Header: React.FC<HeaderProps> = ({buttonPath}) => {
     }, [setIsLoggedIn]);
     return (
         <div className="header">
+            <img src={logoDDM} alt="Logo DDM" className="logo-ddm"/>
             <nav>
                 <ul className="menu">
+
                     <li>
                         <a href="/" onClick={handleClick}>O nás</a>
                     </li>
@@ -87,15 +91,13 @@ const Header: React.FC<HeaderProps> = ({buttonPath}) => {
                     <li>
                         <a href="index.html">Odloučená pracoviště</a>
                     </li>
-                    <li>
-                        {!isLoggedIn ? (
-                            <Button title="Přihlásit se" path={buttonPath}/>
-                        ) : (
-                            <Button title={userData?.name + " " + userData?.surname} path={"/"} onClick={handleLogout}/>
-                        )}
-                    </li>
                 </ul>
             </nav>
+            {!isLoggedIn ? (
+                <Button title="Přihlásit se" path={buttonPath}/>
+            ) : (
+                <Button title={userData?.name + " " + userData?.surname} path={"/"} onClick={handleLogout}/>
+            )}
         </div>
     );
 };
