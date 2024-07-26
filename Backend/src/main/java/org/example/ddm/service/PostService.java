@@ -1,9 +1,12 @@
 package org.example.ddm.service;
 
+import org.example.ddm.entity.Employee;
 import org.example.ddm.entity.Post;
 import org.example.ddm.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class PostService {
@@ -13,5 +16,9 @@ public class PostService {
     public String save(Post post) {
         postRepository.save(post);
         return "Post saved";
+    }
+
+    public List<Post> getAllByClub(String club) {
+        return postRepository.findAllByClub(club);
     }
 }

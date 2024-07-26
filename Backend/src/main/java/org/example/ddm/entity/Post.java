@@ -16,11 +16,13 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long postId;
     private String title;
+    @Column(columnDefinition = "TEXT")
     private String content;
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+    private String club;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id")
     private Employee employee;
 
