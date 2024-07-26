@@ -1,5 +1,5 @@
 import './App.css'
-import Header from "./Header.tsx";
+import Header from "./components/Header.tsx";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import React from "react";
 import LoginPage from "./pages/LoginPage.tsx";

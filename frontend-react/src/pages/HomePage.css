@@ -13,7 +13,7 @@
     opacity: 80%;
 }
 
-.hero-text-container{
+.hero-text-container {
     padding: 30px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     display: grid;
@@ -22,24 +22,25 @@
     align-items: center;
 }
 
-.hero-text{
+.hero-text {
     padding: 20px;
     margin-right: 100px;
 }
 
-.hero-image-container{
+.hero-image-container {
     padding: 15px;
     position: relative;
 }
 
-.hero-image{
+.hero-image {
     width: 65%;
     position: absolute;
     top: -90px;
     right: 10px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
-.hero-image-2{
+
+.hero-image-2 {
     width: 60%;
     position: absolute;
     z-index: -1;

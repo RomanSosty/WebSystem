@@ -1,6 +1,6 @@
 import {useLocation} from "react-router-dom";
 import "./TkJoyPage.css"
-import Button from "../ui/Button.tsx";
+import Button from "../components/Button.tsx";
 
 const TkJoyPage = () => {
     const location = useLocation();

@@ -1,6 +1,6 @@
-import './loginPage.css'
+import './LoginPage.css'
 import {useState} from "react";
-import LoginButton from "../ui/LoginButton.tsx";
+import LoginButton from "../components/LoginButton.tsx";
 
 const LoginPage = () => {
     const [username, setLogin] = useState('');

@@ -2,7 +2,7 @@ import {jwtDecode} from "jwt-decode";
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import "./Header.css";
-import Button from "./ui/Button.tsx";
+import Button from "./Button.tsx";
 import logoDDM from "./assets/logo_BARVA.png"
 
 interface HeaderProps {
