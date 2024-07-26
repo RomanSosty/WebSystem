@@ -14,6 +14,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", allowCredentials = "true")
 public class DdmController {
@@ -54,5 +56,10 @@ public class DdmController {
     @PreAuthorize("hasAuthority('ROLE_JOY')")
     public String addPost(@RequestBody Post post) {
         return postService.save(post);
+    }
+
+    @GetMapping("/allPostByClub")
+    public List<Post> allPostByClub(@RequestParam String club) {
+        return postService.getAllByClub(club);
     }
 }

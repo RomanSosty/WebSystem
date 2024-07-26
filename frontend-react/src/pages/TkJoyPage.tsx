@@ -1,10 +1,34 @@
 import {useLocation} from "react-router-dom";
 import "./TkJoyPage.css"
-import Button from "../components/Button.tsx";
+import Post, {PostProps} from "../components/Post.tsx";
+import PostHeader from "../components/PostHeader.tsx";
+import React, {useEffect, useState} from "react";
 
-const TkJoyPage = () => {
+const TkJoyPage: React.FC = () => {
     const location = useLocation();
     const {roles} = location.state || {};
+    const [posts, setPosts] = useState<PostProps[]>([]);
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/allPostByClub?club=TKJOY', {
+                    method: 'GET'
+                });
+
+                if (response.ok) {
+                    setPosts(await response.json())
+                } else {
+                    console.error(response);
+                }
+
+            } catch (error) {
+                console.error("Error during fetch posts")
+            }
+        }
+
+        fetchPosts();
+    }, [])
 
     return (<div>
             <div className="page-main-text-section">
@@ -28,30 +52,11 @@ const TkJoyPage = () => {
                 </div>
             </div>
             <div className="posts-section">
-                <div className="posts-header">
-                    <h1>Aktuality</h1>
-                    {roles == "ROLE_JOY" ? (
-                        <Button title="Přidat příspěvek" path="/tkjoy"></Button>
-                    ) : (
-                        <div></div>
-                    )}
-                </div>
+                <PostHeader title="Aktuality" roles={roles}/>
                 <div className="posts-container">
-                    <div className="post-box">
-                        <h3> ROZVRH TRÉNINKŮ V TÝDNU 3.-9.6.2024</h3>
-                        <p>
-                            BABY KATEGORIE: Pondělí a středa beze změny<br/>
-                            DISCO C: Pondělí a středa beze změny <br/>
-                            DISCO B: Úterý a čtvrtek beze změny<br/>
-                            SOUTĚŽNÍ SKUPINA MINI: Pouze středa 15:30-17:00 hod.<br/>
-                            SOUTĚŽNÍ SKUPINA DĚTI: Pouze čtvrtek 15:00-16:30<br/>
-                            SOUTĚŽNÍ SKUPINA JUNIOŘI: Pouze čtvrtek 16:30-18:00 hod.<br/>
-                            HLAVNÍ KATEGORIE: Pouze čtvrtek 16:30-18:00 hod.<br/>
-                        </p>
-                    </div>
-                    <div className="post-box">
-                        <h3> PO SOUTĚŽI ORLOVSKÝ POHÁREK JIŽ NEBUDOU PROBÍHAT ŽÁDNÉ TRÉNINKY.</h3>
-                    </div>
+                    {posts.map((post, index) => (
+                        <Post title={post.title} content={post.content} createdAt={post.createdAt} key={index}/>
+                    ))}
                 </div>
             </div>
         </div>
