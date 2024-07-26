@@ -1,11 +1,34 @@
 import {useLocation} from "react-router-dom";
 import "./TkJoyPage.css"
-import Post from "../components/Post.tsx";
+import Post, {PostProps} from "../components/Post.tsx";
 import PostHeader from "../components/PostHeader.tsx";
+import React, {useEffect, useState} from "react";
 
-const TkJoyPage = () => {
+const TkJoyPage: React.FC = () => {
     const location = useLocation();
     const {roles} = location.state || {};
+    const [posts, setPosts] = useState<PostProps[]>([]);
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/allPostByClub?club=TKJOY', {
+                    method: 'GET'
+                });
+
+                if (response.ok) {
+                    setPosts(await response.json())
+                } else {
+                    console.error(response);
+                }
+
+            } catch (error) {
+                console.error("Error during fetch posts")
+            }
+        }
+
+        fetchPosts();
+    }, [])
 
     return (<div>
             <div className="page-main-text-section">
@@ -29,18 +52,11 @@ const TkJoyPage = () => {
                 </div>
             </div>
             <div className="posts-section">
-               <PostHeader title="Aktuality" roles={roles}/>
+                <PostHeader title="Aktuality" roles={roles}/>
                 <div className="posts-container">
-                    <Post title="ROZVRH TRÉNINKŮ V TÝDNU 3.-9.6.2024"
-                          content=" BABY KATEGORIE: Pondělí a středa beze změny
-                                    DISCO C: Pondělí a středa beze změny
-                                    DISCO B: Úterý a čtvrtek beze změny
-                                    SOUTĚŽNÍ SKUPINA MINI: Pouze středa 15:30-17:00 hod.
-                                    SOUTĚŽNÍ SKUPINA DĚTI: Pouze čtvrtek 15:00-16:30
-                                    SOUTĚŽNÍ SKUPINA JUNIOŘI: Pouze čtvrtek 16:30-18:00 hod.
-                                    HLAVNÍ KATEGORIE: Pouze čtvrtek 16:30-18:00 hod."
-                          createdAt="21.9.2024" />
-                    <Post title="PO SOUTĚŽI ORLOVSKÝ POHÁREK JIŽ NEBUDOU PROBÍHAT ŽÁDNÉ TRÉNINKY" createdAt="20.10.2024"/>
+                    {posts.map((post, index) => (
+                        <Post title={post.title} content={post.content} createdAt={post.createdAt} key={index}/>
+                    ))}
                 </div>
             </div>
         </div>
