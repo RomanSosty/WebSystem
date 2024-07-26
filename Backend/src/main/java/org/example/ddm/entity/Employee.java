@@ -10,8 +10,6 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public class Employee {
 
     @Id

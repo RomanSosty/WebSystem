@@ -1,7 +1,9 @@
 package org.example.ddm.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -9,8 +11,6 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class Post {
     private Employee employee;
 
     @PrePersist
-    protected void onCreate(){
+    protected void onCreate() {
         createdAt = new Date();
     }
 }

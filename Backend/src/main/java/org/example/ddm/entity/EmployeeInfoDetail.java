@@ -1,6 +1,5 @@
-package org.example.ddm.service;
+package org.example.ddm.entity;
 
-import org.example.ddm.entity.Employee;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

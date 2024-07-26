@@ -1,6 +1,7 @@
 package org.example.ddm.service;
 
 import org.example.ddm.entity.Employee;
+import org.example.ddm.entity.EmployeeInfoDetail;
 import org.example.ddm.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
