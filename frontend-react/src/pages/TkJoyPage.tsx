@@ -1,6 +1,7 @@
 import {useLocation} from "react-router-dom";
 import "./TkJoyPage.css"
-import Button from "../components/Button.tsx";
+import Post from "../components/Post.tsx";
+import PostHeader from "../components/PostHeader.tsx";
 
 const TkJoyPage = () => {
     const location = useLocation();
@@ -28,30 +29,18 @@ const TkJoyPage = () => {
                 </div>
             </div>
             <div className="posts-section">
-                <div className="posts-header">
-                    <h1>Aktuality</h1>
-                    {roles == "ROLE_JOY" ? (
-                        <Button title="Přidat příspěvek" path="/tkjoy"></Button>
-                    ) : (
-                        <div></div>
-                    )}
-                </div>
+               <PostHeader title="Aktuality" roles={roles}/>
                 <div className="posts-container">
-                    <div className="post-box">
-                        <h3> ROZVRH TRÉNINKŮ V TÝDNU 3.-9.6.2024</h3>
-                        <p>
-                            BABY KATEGORIE: Pondělí a středa beze změny<br/>
-                            DISCO C: Pondělí a středa beze změny <br/>
-                            DISCO B: Úterý a čtvrtek beze změny<br/>
-                            SOUTĚŽNÍ SKUPINA MINI: Pouze středa 15:30-17:00 hod.<br/>
-                            SOUTĚŽNÍ SKUPINA DĚTI: Pouze čtvrtek 15:00-16:30<br/>
-                            SOUTĚŽNÍ SKUPINA JUNIOŘI: Pouze čtvrtek 16:30-18:00 hod.<br/>
-                            HLAVNÍ KATEGORIE: Pouze čtvrtek 16:30-18:00 hod.<br/>
-                        </p>
-                    </div>
-                    <div className="post-box">
-                        <h3> PO SOUTĚŽI ORLOVSKÝ POHÁREK JIŽ NEBUDOU PROBÍHAT ŽÁDNÉ TRÉNINKY.</h3>
-                    </div>
+                    <Post title="ROZVRH TRÉNINKŮ V TÝDNU 3.-9.6.2024"
+                          content=" BABY KATEGORIE: Pondělí a středa beze změny
+                                    DISCO C: Pondělí a středa beze změny
+                                    DISCO B: Úterý a čtvrtek beze změny
+                                    SOUTĚŽNÍ SKUPINA MINI: Pouze středa 15:30-17:00 hod.
+                                    SOUTĚŽNÍ SKUPINA DĚTI: Pouze čtvrtek 15:00-16:30
+                                    SOUTĚŽNÍ SKUPINA JUNIOŘI: Pouze čtvrtek 16:30-18:00 hod.
+                                    HLAVNÍ KATEGORIE: Pouze čtvrtek 16:30-18:00 hod."
+                          createdAt="21.9.2024" />
+                    <Post title="PO SOUTĚŽI ORLOVSKÝ POHÁREK JIŽ NEBUDOU PROBÍHAT ŽÁDNÉ TRÉNINKY" createdAt="20.10.2024"/>
                 </div>
             </div>
         </div>
