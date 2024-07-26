@@ -1,17 +1,15 @@
 package org.example.ddm.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public class Employee {
 
     @Id
@@ -24,5 +22,7 @@ public class Employee {
     private String password;
     private String username;
     private String roles;
-    
+
+    @OneToMany(mappedBy = "employee")
+    private Set<Post> posts = new HashSet<>();
 }

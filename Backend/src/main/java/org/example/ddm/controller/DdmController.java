@@ -2,14 +2,15 @@ package org.example.ddm.controller;
 
 import org.example.ddm.entity.AuthRequest;
 import org.example.ddm.entity.Employee;
+import org.example.ddm.entity.Post;
 import org.example.ddm.service.EmployeeServiceImpl;
 import org.example.ddm.service.JwtService;
+import org.example.ddm.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,8 @@ public class DdmController {
 
     @Autowired
     private EmployeeServiceImpl employeeService;
+    @Autowired
+    private PostService postService;
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
@@ -45,5 +48,11 @@ public class DdmController {
     @PreAuthorize("hasAuthority('ROLE_JOY')")
     public String employeeProfile() {
         return "Welcome to JOY main page";
+    }
+
+    @PostMapping("/addPost")
+    @PreAuthorize("hasAuthority('ROLE_JOY')")
+    public String addPost(@RequestBody Post post) {
+        return postService.save(post);
     }
 }
