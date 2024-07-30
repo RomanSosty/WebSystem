@@ -1,6 +1,5 @@
 package org.example.ddm.service;
 
-import org.example.ddm.entity.Employee;
 import org.example.ddm.entity.Post;
 import org.example.ddm.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;

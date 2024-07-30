@@ -37,7 +37,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/addNewEmployee", "/authAndGenerateToken","/allPostByClub", "/addPost").permitAll())
+                .authorizeHttpRequests(auth -> auth.requestMatchers("/addNewEmployee", "/authAndGenerateToken", "/allPostByClub", "/addPost").permitAll())
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/pageJoy").authenticated())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

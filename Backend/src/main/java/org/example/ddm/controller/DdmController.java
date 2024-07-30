@@ -59,6 +59,7 @@ public class DdmController {
     }
 
     @GetMapping("/allPostByClub")
+   // @PreAuthorize("hasAuthority('ROLE_JOY')")
     public List<Post> allPostByClub(@RequestParam String club) {
         return postService.getAllByClub(club);
     }
