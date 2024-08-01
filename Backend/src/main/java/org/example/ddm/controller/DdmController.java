@@ -58,4 +58,9 @@ public class DdmController {
     public List<Post> allPostByClub(@RequestParam String club) {
         return postService.getAllByClub(club);
     }
+
+    @GetMapping("/deletePost")
+    public String deletePost(@RequestParam String id) {
+        return postService.deletePost(id);
+    }
 }
