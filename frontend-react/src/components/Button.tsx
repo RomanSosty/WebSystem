@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 
 interface ButtonProps {
     title: string;
-    path: string;
+    path?: string;
     onClick?: () => void;
 }
 
@@ -14,8 +14,8 @@ const Button: React.FC<ButtonProps> = ({title, path, onClick}) => {
     const handleClick = () => {
         if (onClick) {
             onClick();
-            navigate(path)
-        } else {
+            if(path) navigate(path)
+        } else if (path) {
             navigate(path)
         }
     }
