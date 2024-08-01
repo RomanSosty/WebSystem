@@ -34,6 +34,8 @@ const Header: React.FC<HeaderProps> = ({buttonPath}) => {
 
     const handleLogout = () => {
         localStorage.removeItem("JWT");
+        localStorage.removeItem("user_role");
+        localStorage.removeItem("user_name");
         setIsLoggedIn(false);
         window.location.reload();
     };
@@ -43,6 +45,8 @@ const Header: React.FC<HeaderProps> = ({buttonPath}) => {
         if (isLogged) {
             setIsLoggedIn(true);
             const decoded: userJwt = jwtDecode<userJwt>(isLogged);
+            localStorage.setItem("user_role", decoded.roles)
+            localStorage.setItem("user_name", decoded.sub)
             setUserData(decoded);
         }
     }, [setIsLoggedIn]);
