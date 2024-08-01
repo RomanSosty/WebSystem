@@ -18,7 +18,7 @@
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     display: grid;
     grid-template-columns: 1.75fr 1.5fr;
-    height: 400px;
+    height: 35em;
     align-items: center;
 }
 
@@ -33,19 +33,19 @@
 }
 
 .hero-image {
-    width: 65%;
+    width: 30em;
     position: absolute;
     top: -90px;
-    right: 10px;
+    right: 10em;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 .hero-image-2 {
-    width: 60%;
+    width: 30em;
     position: absolute;
     z-index: -1;
     opacity: 50%;
-    left: 0;
+    left: 5em;
     transform: rotate(10deg);
     transform-origin: top right;
 }
