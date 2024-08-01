@@ -1,4 +1,4 @@
-package org.example.ddm.entity;
+package org.example.ddm.requestDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

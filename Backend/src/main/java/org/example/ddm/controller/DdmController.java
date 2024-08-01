@@ -1,8 +1,9 @@
 package org.example.ddm.controller;
 
-import org.example.ddm.entity.AuthRequest;
+import org.example.ddm.requestDto.AuthRequest;
 import org.example.ddm.entity.Employee;
 import org.example.ddm.entity.Post;
+import org.example.ddm.requestDto.PostRequest;
 import org.example.ddm.service.EmployeeServiceImpl;
 import org.example.ddm.service.JwtService;
 import org.example.ddm.service.PostService;
@@ -46,15 +47,9 @@ public class DdmController {
         }
     }
 
-    @GetMapping("/pageJoy")
-    @PreAuthorize("hasAuthority('ROLE_JOY')")
-    public String employeeProfile() {
-        return "Welcome to JOY main page";
-    }
-
     @PostMapping("/addPost")
-    @PreAuthorize("hasAuthority('ROLE_JOY')")
-    public String addPost(@RequestBody Post post) {
+    //@PreAuthorize("hasAuthority('ROLE_JOY')")
+    public String addPost(@RequestBody PostRequest post) {
         return postService.save(post);
     }
 
