@@ -1,5 +1,7 @@
 import Button from "./Button.tsx";
-import React from "react";
+import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
+import './LoginButton.css'
 
 interface LoginButtonProps {
     loginData?: { username: string, password: string };
@@ -7,6 +9,8 @@ interface LoginButtonProps {
 }
 
 const LoginButton: React.FC<LoginButtonProps> = ({loginData}) => {
+    const navigate = useNavigate();
+    const [isWrongLoginData, setIsWrongLoginData] = useState<boolean | null>();
 
     const handleFetch = async () => {
         try {
@@ -21,7 +25,14 @@ const LoginButton: React.FC<LoginButtonProps> = ({loginData}) => {
 
             if (response.ok) {
                 localStorage.setItem("JWT", await response.text());
+                setIsWrongLoginData(false);
                 window.location.reload();
+            } else if (response.status === 403) {
+                //TODO: chybová hláška
+                setIsWrongLoginData(true);
+                console.log("Nesprávný uživatel nebo heslo")
+                navigate("/login")
+                return
             } else {
                 console.error(response);
             }
@@ -29,8 +40,10 @@ const LoginButton: React.FC<LoginButtonProps> = ({loginData}) => {
             console.error('Error during login:', error);
         }
     }
-    return (
-        <Button title="Přihlásit se" path={"/"} onClick={handleFetch}/>
+    return (<div>
+            {isWrongLoginData ? (<p className={"error-message"}>Neplatné přihlašovací údaje !</p>) : (<p></p>)}
+            <Button title="Přihlásit se" path={"/"} onClick={handleFetch}/>
+        </div>
     );
 };
 export default LoginButton;
