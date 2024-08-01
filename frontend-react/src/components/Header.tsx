@@ -65,7 +65,7 @@ const Header: React.FC<HeaderProps> = ({buttonPath}) => {
                         </a>
                         <ul className="dropdown-content">
                             <li>
-                                <a href="index.html">Přírodověda</a>
+                                <a href="/prirodoveda" onClick={handleClick}>Přírodověda</a>
                             </li>
                             <li>
                                 <a href="/tkjoy" onClick={handleClick}>
@@ -76,7 +76,7 @@ const Header: React.FC<HeaderProps> = ({buttonPath}) => {
                                 <a href="index.html">Tělovýchova</a>
                             </li>
                             <li>
-                                <a href="index.html">TK TBC</a>
+                                <a href="/tbc" onClick={handleClick}>TK TBC</a>
                             </li>
                             <li>
                                 <a href="index.html">Estetika</a>

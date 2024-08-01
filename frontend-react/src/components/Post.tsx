@@ -9,9 +9,10 @@ export interface PostProps {
     createdAt: string;
     postId: number;
     role?: never;
+    page?: string;
 }
 
-const Post: React.FC<PostProps> = ({title, content, createdAt, role, postId}) => {
+const Post: React.FC<PostProps> = ({title, content, createdAt, role, postId, page}) => {
     const postContent = content ?? '';
     const sentences = postContent.split('. ').filter(sentences => sentences.trim() !== '');
     const formattedDate = createdAt ? format(new Date(createdAt), 'dd.MM.yyyy HH:mm') : 'Neznáme datum';
@@ -40,7 +41,7 @@ const Post: React.FC<PostProps> = ({title, content, createdAt, role, postId}) =>
         ))}
         <p className="post-created-at">{formattedDate}</p>
         <div className="delete-button">
-            {role == "TKJOY" ? (
+            {role == page ? (
                 <Button title="Smazat" onClick={deletePost}></Button>
             ) : (
                 <div></div>

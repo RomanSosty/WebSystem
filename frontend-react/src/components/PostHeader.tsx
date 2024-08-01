@@ -6,11 +6,12 @@ import NewPost from "./NewPost.tsx";
 interface PostHeaderProps {
     title: string;
     roles?: never;
+    page: string;
 }
 
 Modal.setAppElement('#root');
 
-const PostHeader: React.FC<PostHeaderProps> = ({title, roles}) => {
+const PostHeader: React.FC<PostHeaderProps> = ({title, roles, page}) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const openModal = () => {
@@ -31,7 +32,7 @@ const PostHeader: React.FC<PostHeaderProps> = ({title, roles}) => {
             <NewPost closeModal={closeModal}/>
         </Modal>
         <h1>{title}</h1>
-        {roles == "TKJOY" ? (
+        {roles == page ? (
             <Button title="Přidat příspěvek" onClick={openModal}></Button>
         ) : (
             <div></div>
