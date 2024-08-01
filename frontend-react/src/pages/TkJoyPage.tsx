@@ -55,7 +55,7 @@ const TkJoyPage: React.FC = () => {
                 <PostHeader title="Aktuality" roles={roles}/>
                 <div className="posts-container">
                     {posts.map((post, index) => (
-                        <Post title={post.title} content={post.content} createdAt={post.createdAt} key={index}/>
+                        <Post title={post.title} content={post.content} createdAt={post.createdAt} key={index} postId={post.postId} role={roles}/>
                     ))}
                 </div>
             </div>

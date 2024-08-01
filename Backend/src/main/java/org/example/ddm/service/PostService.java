@@ -30,6 +30,11 @@ public class PostService {
         return "Post saved";
     }
 
+    public String deletePost(String postId) {
+        postRepository.deleteById(Integer.valueOf(postId));
+        return "Post deleted";
+    }
+
     public List<Post> getAllByClub(String club) {
         return postRepository.findAllByClub(club);
     }
