@@ -48,7 +48,7 @@ public class DdmController {
     }
 
     @PostMapping("/addPost")
-    @PreAuthorize("hasAuthority('ROLE_JOY')")
+    //@PreAuthorize("hasAuthority('ROLE_JOY')")
     public String addPost(@RequestBody PostRequest post) {
         return postService.save(post);
     }
